@@ -1,0 +1,20 @@
+@host = http://localhost:5000
+@device = 97fef63b-1bc3-4d59-ae72-6457386971a9
+
+GET {{host}}/health
+
+###
+POST {{host}}/api/sync
+Authorization: Bearer {{device}}
+Content-Type: application/json
+
+{
+  "operations": [
+    { "seq": 1, "kind": "set", "key": "profile", "value": { "name": "Explorador" }, "createdAt": 1794268800000 },
+    { "seq": 2, "kind": "note.put", "note": { "id": 1, "text": "Encontré un expediente.", "createdAt": 1794268800000 }, "createdAt": 1794268800000 }
+  ]
+}
+
+###
+GET {{host}}/api/sync
+Authorization: Bearer {{device}}
